@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/Screens/dashboard_screen.dart';
-import 'signup_screen.dart';
+import 'package:myapp/Screens/signup_screen.dart';
+import 'package:myapp/Screens/splash_screen.dart'; // <-- PERUBAHAN 1: Tambahkan import ini
 
 class LoginScreen extends StatefulWidget {
   // Nama rute untuk navigasi
@@ -40,10 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
           const SizedBox(width: 4),
-          const Text(
-            '*',
-            style: TextStyle(color: Colors.red),
-          ),
+          const Text('*', style: TextStyle(color: Colors.red)),
         ],
       );
     }
@@ -98,7 +95,9 @@ class _LoginScreenState extends State<LoginScreen> {
               TextFormField(
                 controller: _passwordController,
                 obscureText: true,
-                decoration: const InputDecoration(hintText: 'Enter your password'),
+                decoration: const InputDecoration(
+                  hintText: 'Enter your password',
+                ),
               ),
               const SizedBox(height: 8.0),
 
@@ -113,7 +112,6 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 24.0),
 
               // Tombol Sign In menggunakan helper method
-              // ...
               primaryButton(
                 label: 'Sign In Now',
                 onTap: () {
@@ -128,16 +126,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     );
                   } else {
-                    // Jika tidak, lanjutkan ke dashboard
+                    // PERUBAHAN 2: Arahkan ke Splash Screen, bukan lagi ke Dashboard
                     Navigator.pushNamedAndRemoveUntil(
                       context,
-                      DashboardScreen.route,
+                      SplashScreen.route, // <-- TUJUAN DIUBAH KE SINI
                       (route) => false,
                     );
                   }
                 },
               ),
-// ...
               const SizedBox(height: 24.0),
               // Opsi Sign Up
               Row(
@@ -170,7 +167,7 @@ class JustduitLogo extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(
-          'Assets/JustDuit.png', // Pastikan path ini benar
+          'assets/images/JustDuit.png', // Pastikan path ini benar
           height: 55,
         ),
         const SizedBox(width: 8),
